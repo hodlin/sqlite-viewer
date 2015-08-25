@@ -16,8 +16,6 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
-    QSqlDatabase db;
-    QSqlQuery *query;
     ~MainWindow();
 
 
@@ -52,7 +50,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-
+    QSqlDatabase db;
+    QSqlQuery *query;
     deleteTable * tableDel;
     CreateTable * tableCre;
 

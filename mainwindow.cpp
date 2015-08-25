@@ -35,13 +35,6 @@ void MainWindow::on_OpenDatabase_clicked()
         else
         {
         ui->status->setText("Database has been opened");
-//        ui->comboBox->clear();
-
-//        QStringList lst = db.tables();
-//        foreach (QString str, lst)
-//        {
-//            ui->comboBox->addItem(str);
-//        }
         updateComboBox();
         showTable(ui->comboBox->currentText());
         }
@@ -52,13 +45,26 @@ void MainWindow::on_NewDatabase_clicked()
 {
     QString fileName = QFileDialog::getSaveFileName(this, tr("New Database"), QString(),
                                                     tr("All Files (*.*);;Database Files (*.sqlite *.sqlite3 *.db)"));
-
-    if (!fileName.isEmpty()) {
+    qDebug() << fileName;
+    if (!fileName.isEmpty())
+    {
         QFile file(fileName);
-        if (!file.open(QIODevice::WriteOnly)) {
+        if (!file.open(QIODevice::WriteOnly))
+        {
             qDebug() << "Imposible to create database!";
-        } else {
+            ui->status->setText("Impossible to create new database!");
+        }
+        else
+        {
             file.close();
+            if (!createConnection(fileName))
+                ui->status->setText("Impossible to open database");
+            else
+            {
+                ui->status->setText("Database has been created");
+                updateComboBox();
+                showTable(ui->comboBox->currentText());
+            }
         }
     }
 }
