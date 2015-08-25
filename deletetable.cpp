@@ -17,6 +17,15 @@ deleteTable::~deleteTable()
 
 void deleteTable::on_buttonBox_accepted()
 {
+    /**
+     * Delete table proccessing
+     *
+     * On submit button pushed event
+     * executes 'DROP TABLE..' statement
+     * at the and emits done() signal
+     *
+     * @return void
+     */
     if(!query->exec("DROP TABLE "+tblNm))
         qDebug() << "Deleting table error!" << query->lastError().text();
     emit done();

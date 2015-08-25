@@ -5,6 +5,16 @@
 #include <QDebug>
 #include <QtSql>
 
+/**
+ *  CreateTable class
+ *
+ * CreateTable class processes creating new table
+ * procedure in currently opened database
+ *
+ * @parent QWidget*    Establishing parent to this class, default is '0'
+ * @query  QSqlQuery*  Query object to execute 'CREATE TABLE..' statement, default in new query
+ *
+ */
 
 namespace Ui {
 class CreateTable;

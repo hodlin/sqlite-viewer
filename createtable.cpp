@@ -23,6 +23,16 @@ CreateTable::~CreateTable()
 
 void CreateTable::on_buttonBox_accepted()
 {
+    /**
+     * Creating table proccessing
+     *
+     * Reads value from text edits for
+     * tableName and columns configuration
+     * and executes 'CREATE TABLE..' statement
+     * at the and emits done() signal
+     *
+     * @return void
+     */
     QString tableName;
     QString tableParams;
     tableName = ui->tableName->text();
