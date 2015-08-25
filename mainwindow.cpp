@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    buttonEnable(false);
 
 }
 
@@ -103,11 +104,13 @@ bool MainWindow::createConnection(QString databaseName)
         qDebug() << "Table: " << str;
     }
 
+    buttonEnable(true);
     return true;
 }
 
 void MainWindow::closeConnection()
 {
+    buttonEnable(false);
     db.close();
     db.removeDatabase(QSqlDatabase::defaultConnection);
 }
@@ -220,4 +223,12 @@ void MainWindow::onTableDelete()
     updateComboBox();
     showTable(ui->comboBox->currentText());
     ui->status->setText("Table deleted");
+}
+
+void MainWindow::buttonEnable(bool flag)
+{
+    ui->CreateTable->setEnabled(flag);
+    ui->DeleteTable->setEnabled(flag);
+    ui->pushButtonNewRecord->setEnabled(flag);
+    ui->pushButtonDeleteRecord->setEnabled(flag);
 }

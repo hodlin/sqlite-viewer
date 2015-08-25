@@ -47,6 +47,7 @@ private slots:
 
     void onTableDelete();
 
+    void buttonEnable(bool flag);
 
 private:
     Ui::MainWindow *ui;
